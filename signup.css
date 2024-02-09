@@ -1,0 +1,40 @@
+header{
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+}
+.signup-left ul li::marker{
+    content: "☑️";
+}
+.signup-left ul li{
+    margin-bottom: 10px;
+}
+.signup-left .card img{
+    width: 200px;
+}
+.signup-container{
+    background-color: #786e6e;
+    min-height: 100vh;
+}
+.signup-right input{
+    padding: 12px;
+    border-radius: 15px;
+    border: none;
+    border: 1px solid #797171;
+}
+.signup-right input:hover{
+    border:1px solid #4933ad ;
+}
+.suggestions button{
+    border: none;
+    padding: 15px 20px;
+    background-color: transparent;
+    border:1px solid #797171 ;
+    font-size: 1.2rem;
+    border-radius: 100px;
+}
+.register{
+    padding: 10px;
+    max-width: 200px;
+    margin-top: 20px;
+    border-radius: 100px;
+    font-size: 1.2rem;
+}

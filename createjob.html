@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create New</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+</head>
+<body>
+    <div class="container-fluid p-2 p-md-5">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="card p-3">
+                    <div class="card-title fs-3 fw-bold text-center mb-3 ">Create New Job Post</div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="title">
+                                <label for="name">Job Title</label>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="role">
+                                <label for="name">Job role</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-floating mt-3">
+                        <input type="text" class="form-control" id="location">
+                        <label for="name">location</label>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="openings">
+                                <label for="name">Openings</label>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-3">
+                            <div class="">
+                                <label for="Ending Date">Opening Date</label>
+                                <input type="date" class="form-control" id="openingdate">
+                         
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-3">
+                            <div class="">
+                                <label for="Ending Date">Ending Date</label>
+                                <input type="date" class="form-control" id="closingdate">
+                         
+                            </div>
+                        </div>
+                    </div>
+                    <textarea name="" class="form-control mt-3" placeholder="job description" id="jd" cols="30" rows="5"></textarea>
+                    <button class="btn btn-primary mt-3 p-2 fs-5" onclick="uploadJob()">Upload Job</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+  
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.6/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.6/firebase-storage.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
+    <script>
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCw4t8yR2rKwudQLAvMFjdjFAl87ZQ8cDk",
+  authDomain: "music-app-7e5ab.firebaseapp.com",
+  databaseURL: "https://music-app-7e5ab-default-rtdb.firebaseio.com",
+  projectId: "music-app-7e5ab",
+  storageBucket: "music-app-7e5ab.appspot.com",
+  messagingSenderId: "319155188786",
+  appId: "1:319155188786:web:0eebc2cdb48d8f66b5f82b",
+  measurementId: "G-K8B6632RDE"
+};      
+        firebase.initializeApp(firebaseConfig);
+        const authentication = firebase.auth()
+        const database = firebase.database();
+
+        const title = document.getElementById('title').value;
+        const loc = document.getElementById('location').value;
+        const role = document.getElementById('role').value;
+        const dateopening = document.getElementById('openingdate').value;
+        const dateclosing = document.getElementById('closingdate').value;
+        const openings = document.getElementById('openings').value;
+        const jd = document.getElementById('jd').value;
+
+        function uploadJob(){
+            const newJob = {
+                jobtitle:title,
+                joblocation:loc,
+                jobrole:role,
+                jobdateopening:dateopening,
+                jobdateclosing:dateclosing,
+                jobOpenings:openings,
+                jobDescription:jd
+            }
+            const database_ref = database.ref();
+            const user = authentication.currentUser;
+            database_ref.child('jobs/' + user.uid ).set(newJob)
+            alert('created job')
+        }   
+    </script>
+</body>
+</html>
